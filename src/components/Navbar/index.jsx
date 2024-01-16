@@ -1,4 +1,5 @@
 import InputSearch from "./InputSearch";
+import UserActionButton from "./UserActionButton";
 
 export default function Navbar() {
   return (
@@ -39,9 +40,12 @@ export default function Navbar() {
             </svg>
             <span className="sr-only">Search</span>
           </button>
-          <div className="relative hidden md:block">
-            {/* input search */}
-            <InputSearch />
+          <div className="flex items-center gap-4">
+            <div className="relative hidden md:block">
+              {/* input search */}
+              <InputSearch />
+            </div>
+            <UserActionButton className="hidden md:block" />
           </div>
           <button
             data-collapse-toggle="navbar-search"
@@ -72,10 +76,12 @@ export default function Navbar() {
           className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
           id="navbar-search"
         >
-          <div className="relative mt-3 md:hidden">
-            {/* input search */}
-            <InputSearch />
-            <Link href="/api/auth/signin">Sign In</Link>
+          <div className="flex items-center">
+            <div className="relative mt-3 md:hidden">
+              {/* input search */}
+              <InputSearch />
+              <UserActionButton className="" />
+            </div>
           </div>
         </div>
       </div>
