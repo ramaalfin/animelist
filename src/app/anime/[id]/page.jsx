@@ -1,8 +1,18 @@
 import { getAnimeResponse } from "@/libs/api-libs";
 import VideoPlayer from "@/components/Utilities/VideoPlayer";
+import CollectionButton from "@/components/AnimeList/CollectionButton";
+import { authUserSession } from "@/libs/auth-lib";
+import prisma from "@/libs/prisma";
 
 export default async function DetailAnime({ params: { id } }) {
   const anime = await getAnimeResponse(`anime/${id}`);
+  const user = await authUserSession();
+  const collection = await prisma.collection.findFirst({
+    where: {
+      anime_mal_id: id,
+      user_email: user?.email,
+    },
+  });
 
   return (
     <section className="body-font overflow-hidden text-color-primary">
@@ -49,9 +59,15 @@ export default async function DetailAnime({ params: { id } }) {
               </span>
             </div>
 
-            <div className="">
+            <div className="mb-4 ">
               <h3>Synopsis: </h3>
               <p className="leading-relaxed">{anime.data.synopsis}</p>
+            </div>
+
+            <div className="mb-4 ">
+              {!collection && user && (
+                <CollectionButton anime_mal_id={id} user_email={user?.email} />
+              )}
             </div>
           </div>
         </div>
