@@ -66,7 +66,12 @@ export default async function DetailAnime({ params: { id } }) {
 
             <div className="mb-4 ">
               {!collection && user && (
-                <CollectionButton anime_mal_id={id} user_email={user?.email} />
+                <CollectionButton
+                  anime_mal_id={id}
+                  user_email={user?.email}
+                  anime_image={anime.data.images?.webp.image_url}
+                  anime_title={anime.data.title}
+                />
               )}
             </div>
           </div>

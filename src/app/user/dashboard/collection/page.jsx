@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Header from "@/components/Dashboard/Header";
 import { authUserSession } from "@/libs/auth-lib";
-// import prisma from "@/libs/prisma";
+import prisma from "@/libs/prisma";
 
 export default async function Collection() {
   const user = await authUserSession();
@@ -25,9 +25,15 @@ export default async function Collection() {
               key={index}
               className="relative border-2 border-color-accent"
             >
-              <Image className="w-full" alt="..." width={350} height={350} />
+              <Image
+                className="w-full"
+                alt="..."
+                width={350}
+                height={350}
+                src={anime.anime_image}
+              />
               <div className="absolute bottom-0 flex h-12 w-full items-center justify-center bg-color-accent">
-                <h5 className="text-center text-base">{anime.anime_mal_id}</h5>
+                <h5 className="text-center text-base">{anime.anime_title}</h5>
               </div>
             </Link>
           );

@@ -2,13 +2,18 @@
 
 import React, { useState } from "react";
 
-export default async function CollectionButton({ anime_mal_id, user_email }) {
+export default async function CollectionButton({
+  anime_mal_id,
+  user_email,
+  anime_image,
+  anime_title,
+}) {
   const [isCreated, setIsCreated] = useState(false);
 
   const handleCollectionButton = async (event) => {
     event.preventDefault();
 
-    const data = { anime_mal_id, user_email };
+    const data = { anime_mal_id, user_email, anime_image, anime_title };
 
     const response = await fetch("/api/v1/collection", {
       method: "POST",

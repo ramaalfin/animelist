@@ -8,7 +8,7 @@ export default async function UserActionButton() {
 
   return (
     <div className="flex gap-4">
-      {user && <Link href="user/dashboard">Dashboard</Link>}
+      {user && <Link href="/user/dashboard">Dashboard</Link>}
       <Link href={`${buttonLink}`}>{buttonLabel}</Link>
     </div>
   );
