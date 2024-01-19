@@ -18,6 +18,9 @@ export default async function Collection() {
       <Header titleHeader="My Collection" />
 
       <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {collections.length === 0 && (
+          <p className="text-color-primary">No collection yet</p>
+        )}
         {collections.map((anime, index) => {
           return (
             <Link

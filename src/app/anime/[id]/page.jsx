@@ -4,6 +4,7 @@ import CollectionButton from "@/components/AnimeList/CollectionButton";
 import { authUserSession } from "@/libs/auth-lib";
 import prisma from "@/libs/prisma";
 import CommentInput from "@/components/AnimeList/CommentInput";
+import CommentBox from "@/components/AnimeList/CommentBox";
 
 export default async function DetailAnime({ params: { id } }) {
   const anime = await getAnimeResponse(`anime/${id}`);
@@ -76,12 +77,19 @@ export default async function DetailAnime({ params: { id } }) {
               )}
             </div>
 
-            <CommentInput
-              anime_mal_id={id}
-              user_email={user?.email}
-              username={user?.name}
-              anime_title={anime.data.title}
-            />
+            <div className="mb-4">
+              <h3 className="text-white">Comments: </h3>
+              <CommentBox id={id} />
+            </div>
+
+            {user && (
+              <CommentInput
+                anime_mal_id={id}
+                user_email={user?.email}
+                username={user?.name}
+                anime_title={anime.data.title}
+              />
+            )}
           </div>
         </div>
       </div>
